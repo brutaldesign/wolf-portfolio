@@ -1,0 +1,298 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Wolf Portfolio\n"
+"POT-Creation-Date: 2014-03-09 01:59+0100\n"
+"PO-Revision-Date: 2014-03-09 01:59+0100\n"
+"Last-Translator: \n"
+"Language-Team: wpwolf.com <support@wpwolf.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../wolf-portfolio.php:204
+#, php-format
+msgid ""
+"says : <em>Almost done! you need to create a page for your portfolio.</em> "
+"<a href=\"%s\">Create a page</a>"
+msgstr ""
+
+#: ../wolf-portfolio.php:230
+msgid "Your portfolio page has been succesfully created."
+msgstr ""
+
+#: ../wolf-portfolio.php:376
+msgid "Works"
+msgstr ""
+
+#: ../wolf-portfolio.php:377
+msgid "Work"
+msgstr ""
+
+#: ../wolf-portfolio.php:378
+msgid "Add New"
+msgstr ""
+
+#: ../wolf-portfolio.php:379
+msgid "Add New Work"
+msgstr ""
+
+#: ../wolf-portfolio.php:380
+msgid "All Works"
+msgstr ""
+
+#: ../wolf-portfolio.php:381
+msgid "Edit Work"
+msgstr ""
+
+#: ../wolf-portfolio.php:382
+msgid "New Work"
+msgstr ""
+
+#: ../wolf-portfolio.php:383
+msgid "View Work"
+msgstr ""
+
+#: ../wolf-portfolio.php:384
+msgid "Search Works"
+msgstr ""
+
+#: ../wolf-portfolio.php:385
+msgid "No works found"
+msgstr ""
+
+#: ../wolf-portfolio.php:386
+msgid "No works found in Trash"
+msgstr ""
+
+#: ../wolf-portfolio.php:388
+msgid "Portfolio"
+msgstr ""
+
+#: ../wolf-portfolio.php:408
+msgid "Present your work"
+msgstr ""
+
+#: ../wolf-portfolio.php:424
+msgid "Work Categories"
+msgstr ""
+
+#: ../wolf-portfolio.php:425
+msgid "Work Type"
+msgstr ""
+
+#: ../wolf-portfolio.php:426
+msgid "Search Work Categories"
+msgstr ""
+
+#: ../wolf-portfolio.php:427
+msgid "Popular Work Categories"
+msgstr ""
+
+#: ../wolf-portfolio.php:428
+msgid "All Work Categories"
+msgstr ""
+
+#: ../wolf-portfolio.php:429
+msgid "Parent Work Type"
+msgstr ""
+
+#: ../wolf-portfolio.php:430
+msgid "Parent Work Type:"
+msgstr ""
+
+#: ../wolf-portfolio.php:431
+msgid "Edit Work Type"
+msgstr ""
+
+#: ../wolf-portfolio.php:432
+msgid "Update Work Type"
+msgstr ""
+
+#: ../wolf-portfolio.php:433
+msgid "Add New Work Type"
+msgstr ""
+
+#: ../wolf-portfolio.php:434
+msgid "New Work Type"
+msgstr ""
+
+#: ../wolf-portfolio.php:435
+msgid "Separate work categories with commas"
+msgstr ""
+
+#: ../wolf-portfolio.php:436
+msgid "Add or remove work categories"
+msgstr ""
+
+#: ../wolf-portfolio.php:437
+msgid "Choose from the most used work categories"
+msgstr ""
+
+#: ../wolf-portfolio.php:438
+msgid "Categories"
+msgstr ""
+
+#: ../wolf-portfolio.php:464
+msgid "Work Details"
+msgstr ""
+
+#: ../wolf-portfolio.php:484
+msgid "Client"
+msgstr ""
+
+#: ../wolf-portfolio.php:492
+msgid "Project Link"
+msgstr ""
+
+#: ../wolf-portfolio.php:542
+msgid "Settings"
+msgstr ""
+
+#: ../wolf-portfolio.php:543
+msgid "Shortcode"
+msgstr ""
+
+#: ../wolf-portfolio.php:601
+msgid "Portfolio Page"
+msgstr ""
+
+#: ../wolf-portfolio.php:602
+msgid "Max number of column"
+msgstr ""
+
+#: ../wolf-portfolio.php:603
+msgid "Use Isotope filter"
+msgstr ""
+
+#: ../wolf-portfolio.php:647
+msgid "Select a page..."
+msgstr ""
+
+#: ../wolf-portfolio.php:669
+msgid "Number of column on desktop screen"
+msgstr ""
+
+#: ../wolf-portfolio.php:696
+msgid "Portfolio Settings"
+msgstr ""
+
+#: ../wolf-portfolio.php:699
+msgid "Settings saved."
+msgstr ""
+
+#: ../wolf-portfolio.php:705
+msgid "Save Changes"
+msgstr ""
+
+#: ../wolf-portfolio.php:720
+msgid "Portfolio Shortcode"
+msgstr ""
+
+#: ../wolf-portfolio.php:721
+msgid ""
+"To display your last works in your post or page you can use the following "
+"shortcode."
+msgstr ""
+
+#: ../wolf-portfolio.php:723
+msgid "Additionally, you can add a count and/or a category attribute."
+msgstr ""
+
+#: ../classes/class-video-thumbnails.php:75
+#, php-format
+msgid ""
+"Error retrieving video information from the URL <a href=\"%1$s\">%1$s</a>."
+"<br />\n"
+"\t\t\t\t\t\t\t\t<a href=\"%2$s\">Libcurl error</a> %3$s: <code>%4$s</"
+"code>. \n"
+"\t\t\t\t\t\t\t\tIf opening that URL in your web browser returns anything "
+"else than an error page, \n"
+"\t\t\t\t\t\t\t\tthe problem may be related to your web server and might be "
+"something your host administrator can solve."
+msgstr ""
+
+#: ../classes/class-video-thumbnails.php:436
+#: ../classes/class-video-thumbnails.php:603
+msgid "Reset"
+msgstr ""
+
+#: ../classes/class-video-thumbnails.php:437
+#: ../classes/class-video-thumbnails.php:604
+msgid "Delete"
+msgstr ""
+
+#: ../classes/class-video-thumbnails.php:463
+msgid "Remove featured image"
+msgstr ""
+
+#: ../classes/class-video-thumbnails.php:474
+msgid "Working..."
+msgstr ""
+
+#: ../classes/class-video-thumbnails.php:522
+msgid "Set featured image"
+msgstr ""
+
+#: ../classes/class-video-thumbnails.php:599
+msgid "No video URL in the post."
+msgstr ""
+
+#: ../classes/class-video-thumbnails.php:600
+msgid ""
+"A video has been attached to this post. Click on \"Generate\" to create a "
+"thumbnail from this video"
+msgstr ""
+
+#: ../classes/class-video-thumbnails.php:601
+msgid ""
+"You will be able to generate a video thumbnail and use it as featured image "
+"for this post when it is published."
+msgstr ""
+
+#: ../classes/class-video-thumbnails.php:602
+msgid "Generate"
+msgstr ""
+
+#: ../templates/content-work.php:26
+#, php-format
+msgid "Permalink to %s"
+msgstr ""
+
+#: ../templates/filter.php:15
+msgid "All"
+msgstr ""
+
+#: ../templates/single-work.php:32
+msgid ", "
+msgstr ""
+
+#: ../templates/single-work.php:43
+#, php-format
+msgid "On %s"
+msgstr ""
+
+#: ../templates/single-work.php:50
+#, php-format
+msgid "For %s"
+msgstr ""
+
+#: ../templates/single-work.php:57
+#, php-format
+msgid "in %s"
+msgstr ""
+
+#: ../templates/single-work.php:64
+msgid "Launch Project"
+msgstr ""
+
+#: ../templates/single-work.php:73
+msgid "Edit"
+msgstr ""
+
+#: ../templates/loop/no-work-found.php:1
+msgid "Nothing found"
+msgstr ""
