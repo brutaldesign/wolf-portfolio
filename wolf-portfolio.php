@@ -352,7 +352,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		 */
 		public function print_styles() {
 
-			wp_enqueue_style( 'wolf-portfolio', $this->plugin_url() . '/assets/css/min/portfolio.min.css', array(), $this->version, 'all' );
+			wp_enqueue_style( 'wolf-portfolio', $this->plugin_url() . '/assets/css/portfolio.min.css', array(), $this->version, 'all' );
 
 		}
 
@@ -364,8 +364,8 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 			if ( $this->get_option( 'isotope' ) && is_page( wolf_portfolio_get_page_id() ) ) {
 
 				wp_enqueue_script( 'jquery' );
-				wp_enqueue_script( 'isotope', $this->plugin_url() . '/assets/js/min/jquery.isotope.min.js', 'jquery', '1.5.25', true );
-				wp_enqueue_script( 'wolf-portfolio', $this->plugin_url() . '/assets/js/min/jquery.portfolio.min.js', 'jquery', $this->version, true );
+				wp_enqueue_script( 'isotope', $this->plugin_url() . '/assets/js/lib/jquery.isotope.min.js', 'jquery', '1.5.25', true );
+				wp_enqueue_script( 'wolf-portfolio', $this->plugin_url() . '/assets/js/app.min.js', 'jquery', $this->version, true );
 				wp_localize_script(
 						'wolf-portfolio', 'WolfPortfolioParams', array(
 							'columns' => $this->get_option( 'col', 4 ),

@@ -236,17 +236,15 @@ $width: 100%;
 	z-index: 1;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1030px) {
 	
-	@for $i from 1 through $cols {
-		.work-grid-col-#{$i} .work-item{
-			width: 50%;
-		}
+	.work-grid-col-4 .work-item{
+		width: 50%;
 	}
 
-} /*end of max-width: 767px media query*/
+}
 
-@media screen and (max-width: 481px) {
+@media screen and (max-width:500px) {
 	
 	@for $i from 1 through $cols {
 		.work-grid-col-#{$i} .work-item{
@@ -254,6 +252,5 @@ $width: 100%;
 			float: none;
 		}
 	}
-
-} /*end of max-width: 481px media query*/
+}
 
