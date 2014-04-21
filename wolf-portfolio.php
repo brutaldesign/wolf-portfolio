@@ -3,11 +3,11 @@
  * Plugin Name: Wolf Portfolio
  * Plugin URI: http://wpwolf.com/plugin/wolf-portfolio
  * Description: A ready-to-use portfolio custom post type with Isotope filter.
- * Version: 1.1.2
+ * Version: 1.1.3
  * Author: WpWolf
  * Author URI: http://wpwolf.com
  * Requires at least: 3.5
- * Tested up to: 3.8.1
+ * Tested up to: 3.9
  *
  * Text Domain: wolf
  * Domain Path: /lang/
@@ -42,7 +42,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 	 * Contains the main functions for Wolf_Porfolio
 	 *
 	 * @class Wolf_Porfolio
-	 * @version 1.1.2
+	 * @version 1.1.3
 	 * @since 1.0.0
 	 * @package WolfPortfolio
 	 * @author WpWolf
@@ -52,7 +52,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		/**
 		 * @var string
 		 */
-		public $version = '1.1.2';
+		public $version = '1.1.3';
 
 		/**
 		 * @var string
@@ -159,7 +159,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 
 			// Core functions
 			include_once( 'includes/core-functions.php' );
-
 		}
 
 		/**
@@ -179,7 +178,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 			// Functions
 			include_once( 'includes/hooks.php' ); // Template hooks used on the front-end
 			include_once( 'includes/functions.php' ); // Contains functions for various front-end events
-			
 		}
 
 		/**
@@ -189,7 +187,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		public function include_template_functions() {
 			
 			include_once( 'includes/template.php' );
-
 		}
 
 		/**
@@ -261,7 +258,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 			}
 
 			return false;
-
 		}
 
 		/**
@@ -303,7 +299,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 			$locale = apply_filters( 'wolf', get_locale(), $domain );
 			load_textdomain( $domain, WP_LANG_DIR.'/'.$domain.'/'.$domain.'-'.$locale.'.mo' );
 			load_plugin_textdomain( $domain, FALSE, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
-
 		}
 
 		/**
@@ -353,7 +348,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		public function print_styles() {
 
 			wp_enqueue_style( 'wolf-portfolio', $this->plugin_url() . '/assets/css/portfolio.min.css', array(), $this->version, 'all' );
-
 		}
 
 		/**
@@ -372,7 +366,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 						)
 				);
 			}
-
 		}
 		
 		/**
@@ -468,7 +461,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 				array( $this, 'render_metabox' ),
 				'work'
 			);
-
 		}
 
 		/**
@@ -492,7 +484,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 			_e( 'Project Link', 'wolf' );
 			echo '</label><br>';
 			echo '<input type="text" id="work_link" name="work_link" value="' . esc_url( $link ) . '" size="25" />';
-
 		}
 
 		/**
@@ -573,7 +564,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 				return $default;
 
 			}
-				
 		}
 
 		/**
@@ -586,7 +576,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 			add_settings_field( 'page_id', __( 'Portfolio Page', 'wolf' ), array( $this, 'setting_page_id' ), 'wolf-work-settings', 'wolf-work-settings' );
 			add_settings_field( 'columns', __( 'Max number of column', 'wolf' ), array( $this, 'setting_columns' ), 'wolf-work-settings', 'wolf-work-settings' );
 			add_settings_field( 'isotope', __( 'Use Isotope filter', 'wolf' ), array( $this, 'setting_isotope' ), 'wolf-work-settings', 'wolf-work-settings' );
-
 		}
 
 		/**
@@ -732,7 +721,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 
 			$loop = new WP_Query( $args );
 			if ( $loop->have_posts() ) : ?>
-				<ul class="shortcode-work-grid work-grid-col-<?php echo intval( $count ); ?>">
+				<ul class="shortcode-work-grid work-grid-col-<?php echo intval( $col ); ?>">
 					<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
 						<?php wolf_portfolio_get_template_part( 'content', 'work' ); ?>
@@ -747,7 +736,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 			$html = ob_get_contents();
 			ob_end_clean();
 			return $html;
-
 		}
 
 		/**
@@ -793,7 +781,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		 */
 		public function plugin_path() {
 			if ( $this->plugin_path ) return $this->plugin_path;
-
 			return $this->plugin_path = untrailingslashit( plugin_dir_path( __FILE__ ) );
 		}
 

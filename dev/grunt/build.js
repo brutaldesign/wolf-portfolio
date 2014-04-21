@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 			'uglify',
 			'clean:build',
 			'copyto:build',
-			'imagemin:assets',
+			//'imagemin:assets',
 			'compress:build',
 			'notify:build'
 		] );
