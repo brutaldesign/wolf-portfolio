@@ -95,7 +95,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 
 			// add portfolio image sizes
 			add_image_size( 'portfolio-thumb', 600, 450, true );
-			add_image_size( 'portfolio-video-thumb', 600, 450, true );
+			add_image_size( 'portfolio-video-thumb', 480, 360, true );
 			add_image_size( 'portfolio-image', 1200, 5000, false );
 
 			// Include required files

@@ -20,6 +20,7 @@ $tax_args = array(
 
 $tax = get_categories( $tax_args );
 $active_class = ( is_page( wolf_portfolio_get_page_id() ) ) ? ' class="active"' : '';
+if ( $tax != array() ) :
 ?>
 <div id="work-filter-container">
 	<ul id="work-filter">
@@ -33,3 +34,4 @@ $active_class = ( is_page( wolf_portfolio_get_page_id() ) ) ? ' class="active"' 
 	<?php endforeach; ?>
 	</ul>
 </div>
+<?php endif; ?>
