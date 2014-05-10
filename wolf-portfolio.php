@@ -232,7 +232,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 
 				// Create post object
 				$post = array(
-					'post_title'  => 'Portfolio',
+					'post_title'  => 'Porttfolio',
 					'post_type'   => 'page',
 					'post_status' => 'publish',
 				);
