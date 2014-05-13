@@ -276,7 +276,7 @@
   z-index: 1;
 }
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 900px) {
   .work-grid-col-4 .work-item {
     width: 50%;
   }
