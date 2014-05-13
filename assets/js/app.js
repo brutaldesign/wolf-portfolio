@@ -54,11 +54,11 @@ WolfPortfolio = function ( $ ) {
 		getNumColumns : function ( mainContainer ) {
 			var winWidth = mainContainer.width(),
 				column = WolfPortfolioParams.columns;
-			if ( 481 > winWidth ) {
+			if ( 500 > winWidth ) {
 				column = 1;
-			} else if ( 481 <= winWidth && 767 > winWidth ) {
+			} else if ( 500 <= winWidth && 900 > winWidth ) {
 				column = 2;
-			} else if ( 767 <= winWidth ) {
+			} else if ( 900 <= winWidth ) {
 				column = WolfPortfolioParams.columns;
 			}
 			return column;

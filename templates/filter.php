@@ -20,6 +20,8 @@ $tax_args = array(
 
 $tax = get_categories( $tax_args );
 $active_class = ( is_page( wolf_portfolio_get_page_id() ) ) ? ' class="active"' : '';
+$current_tax_slug = get_query_var( 'work_type' );
+
 if ( $tax != array() ) :
 ?>
 <div id="work-filter-container">
@@ -28,7 +30,7 @@ if ( $tax != array() ) :
 	<?php foreach ( $tax as $t ) : ?>
 		<?php if ( 0 != $t->count ) : ?>
 			<li>
-				<a data-filter="<?php echo sanitize_title( $t->slug ); ?>" href="<?php echo esc_url( get_term_link( $t ) ); ?>"><?php echo sanitize_text_field( $t->name ); ?></a>
+				<a<?php if ( $current_tax_slug == $t->slug ) echo ' class="active"';  ?> data-filter="<?php echo sanitize_title( $t->slug ); ?>" href="<?php echo esc_url( get_term_link( $t ) ); ?>"><?php echo sanitize_text_field( $t->name ); ?></a>
 			</li>
 		<?php endif; ?>
 	<?php endforeach; ?>

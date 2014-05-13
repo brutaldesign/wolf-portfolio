@@ -3,7 +3,7 @@
  * Plugin Name: Wolf Portfolio
  * Plugin URI: http://wpwolf.com/plugin/wolf-portfolio
  * Description: A ready-to-use portfolio custom post type with Isotope filter.
- * Version: 1.1.3
+ * Version: 1.1.4
  * Author: WpWolf
  * Author URI: http://wpwolf.com
  * Requires at least: 3.5
@@ -42,7 +42,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 	 * Contains the main functions for Wolf_Porfolio
 	 *
 	 * @class Wolf_Porfolio
-	 * @version 1.1.3
+	 * @version 1.1.4
 	 * @since 1.0.0
 	 * @package WolfPortfolio
 	 * @author WpWolf
@@ -52,7 +52,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		/**
 		 * @var string
 		 */
-		public $version = '1.1.3';
+		public $version = '1.1.4';
 
 		/**
 		 * @var string
