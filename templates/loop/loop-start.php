@@ -8,4 +8,4 @@
  */
 $columns = wolf_portfolio_get_option( 'col', 4 );
 ?>
-<ul class="works <?php echo sanitize_html_class( 'work-grid-col-' . $columns ); ?>">
+<div class="works <?php echo sanitize_html_class( 'works-grid-col-' . $columns ); ?>">
