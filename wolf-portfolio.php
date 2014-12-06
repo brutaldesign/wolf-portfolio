@@ -3,11 +3,11 @@
  * Plugin Name: Wolf Portfolio
  * Plugin URI: http://wpwolf.com/plugin/wolf-portfolio
  * Description: A ready-to-use portfolio custom post type with Isotope filter.
- * Version: 1.1.4
+ * Version: 1.1.5
  * Author: WpWolf
  * Author URI: http://wpwolf.com
  * Requires at least: 3.5
- * Tested up to: 3.9
+ * Tested up to: 4.0
  *
  * Text Domain: wolf
  * Domain Path: /lang/
@@ -42,7 +42,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 	 * Contains the main functions for Wolf_Porfolio
 	 *
 	 * @class Wolf_Porfolio
-	 * @version 1.1.4
 	 * @since 1.0.0
 	 * @package WolfPortfolio
 	 * @author WpWolf
@@ -52,7 +51,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		/**
 		 * @var string
 		 */
-		public $version = '1.1.4';
+		public $version = '1.1.5';
 
 		/**
 		 * @var string
@@ -108,9 +107,6 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 			// register shortcode
 			add_shortcode( 'wolf_last_works', array( $this, 'shortcode' ) );
 
-			// styles
-			add_action( 'wp_print_styles', array( $this, 'print_styles' ) );
-
 			// scripts
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
@@ -124,7 +120,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		 */
 		public function activate( $network_wide ) {
 			
-			// do stuff
+			flush_rewrite_rules();
 		}
 
 		/**
@@ -196,26 +192,52 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		 *
 		 */
 		public function check_page() {
-			
+
 			$output    = '';
 			$theme_dir = get_template_directory();
 
+			//delete_option( '_wolf_portfolio_page_id' );
+			
+			if ( ! get_option( '_wolf_portfolio_needs_page' ) )
+				return;
+
 			if ( -1 == wolf_portfolio_get_page_id() && ! isset( $_GET['wolf_portfolio_create_page'] ) ) {
 
+				if ( isset( $_GET['skip_wolf_portfolio_setup'] ) ) {
+					delete_option( '_wolf_portfolio_needs_page' );
+					return;
+				}
+				
+				update_option( '_wolf_portfolio_needs_page', true );
+				
 				$message = '<strong>Wolf Portfolio</strong> ' . sprintf(
-					__( 'says : <em>Almost done! you need to <a href="%1$s">create a page</a> for your portfolio or <a href="%2$s">select an existing page</a> in the plugin settings</em>', 'wolf' ), 
+					__( 'says : <em>Almost done! you need to <a href="%1$s">create a page</a> for your portfolio or <a href="%2$s">select an existing page</a> in the plugin settings</em>.', 'wolf' ), 
 						esc_url( admin_url( '?wolf_portfolio_create_page=true' ) ),
 						esc_url( admin_url( 'edit.php?post_type=work&page=wolf-work-settings' ) )
 				);
 
-				$output = '<div class="updated"><p>';
+				$message .= sprintf(
+					__( '<br><br>
+						<a href="%1$s" class="button button-primary">Create a page</a>
+						&nbsp;
+						<a href="%2$s" class="button button-primary">Select an existing page</a>
+						&nbsp;
+						<a href="%3$s" class="button">Skip setup</a>', 'wolf' ), 
+						esc_url( admin_url( '?wolf_portfolio_create_page=true' ) ),
+						esc_url( admin_url( 'edit.php?post_type=work&page=wolf-work-settings' ) ),
+						esc_url( admin_url( '?skip_wolf_portfolio_setup=true' ) )
+				);
 
-				$output .= $message;
+				$output = '<div class="updated wolf-admin-notice wolf-plugin-admin-notice"><p>';
+
+					$output .= $message;
 
 				$output .= '</p></div>';
 
 				echo $output;
+			} else {
 
+				delete_option( '_wolf_portfolio_need_page' );
 			}
 
 			return false;
@@ -284,6 +306,9 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 
 			// register post type
 			$this->register_taxonomy();
+
+			// add body class
+			add_filter( 'body_class', array( $this, 'add_body_class' ) );
 			
 			// add work metaboxes
 			add_action( 'add_meta_boxes', array( $this, 'add_metabox' ) );
@@ -343,28 +368,34 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		}
 
 		/**
-		 * Print CSS styles
+		 * Add a specific body class on portfolio index and taxonomy pages
 		 */
-		public function print_styles() {
+		public function add_body_class( $classes ) {
 
-			wp_enqueue_style( 'wolf-portfolio', $this->plugin_url() . '/assets/css/portfolio.min.css', array(), $this->version, 'all' );
+			if (
+				! is_singular( 'work' )
+				&& ( 'work' == get_post_type() || ( function_exists( 'wolf_portfolio_get_page_id' ) && is_page( wolf_portfolio_get_page_id() ) ) )
+			) {
+				$classes[] = 'wolf-portfolio';
+				$classes[] = 'wolf-portfolio-cols-' . $this->get_option( 'col', 4 );
+			}
+
+			return $classes;
 		}
 
 		/**
-		 * Enqueue JS script in footer
+		 * Enqueue scripts
 		 */
 		public function enqueue_scripts() {
+
+			wp_enqueue_style( 'wolf-portfolio', $this->plugin_url() . '/assets/css/portfolio.min.css', array(), $this->version, 'all' );
 
 			if ( $this->get_option( 'isotope' ) && is_page( wolf_portfolio_get_page_id() ) ) {
 
 				wp_enqueue_script( 'jquery' );
-				wp_enqueue_script( 'isotope', $this->plugin_url() . '/assets/js/lib/jquery.isotope.min.js', 'jquery', '1.5.25', true );
+				wp_enqueue_script( 'imagesloaded', $this->plugin_url() . '/assets/js/lib/imagesloaded.pkgd.min.js', 'jquery', '3.1.8', true );
+				wp_enqueue_script( 'isotope', $this->plugin_url() . '/assets/js/lib/isotope.pkgd.min.js', 'jquery', '2.0.1', true );
 				wp_enqueue_script( 'wolf-portfolio', $this->plugin_url() . '/assets/js/app.min.js', 'jquery', $this->version, true );
-				wp_localize_script(
-						'wolf-portfolio', 'WolfPortfolioParams', array(
-							'columns' => $this->get_option( 'col', 4 ),
-						)
-				);
 			}
 		}
 		
@@ -617,7 +648,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 			<select name="wolf_work_settings[page_id]">
 				<option value="-1"><?php _e( 'Select a page...', 'wolf' ); ?></option>
 				<?php foreach ( $pages as $page ) : ?>
-					<option <?php if ( intval( $page->ID ) == get_option( '_wolf_portfolio_page_id' ) ) echo 'selected="selected"'; ?> value="<?php echo intval( $page->ID ); ?>"><?php echo sanitize_text_field( $page->post_title ); ?></option>
+					<option <?php if ( intval( $page->ID ) == get_option( '_wolf_portfolio_page_id' ) ) echo 'selected="selected"'; ?> value="<?php echo absint( $page->ID ); ?>"><?php echo sanitize_text_field( $page->post_title ); ?></option>
 				<?php endforeach; ?>
 			</select>
 			<?php
@@ -628,7 +659,7 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 		 *
 		 */
 		public function setting_columns() {
-			$columns = array( 5, 4, 3 );
+			$columns = array( 1, 2, 3, 4, 5, 6 );
 			?>
 			<select name="wolf_work_settings[col]">
 				<?php foreach ( $columns as $column ) : ?>
@@ -683,8 +714,8 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 				<h2><?php _e( 'Portfolio Shortcode', 'wolf' ) ?></h2>
 				<p><?php _e( 'To display your last works in your post or page you can use the following shortcode.', 'wolf' ); ?></p>
 				<p><code>[wolf_last_works]</code></p>
-				<p><?php _e( 'Additionally, you can add a count and/or a category attribute.', 'wolf' ); ?></p>
-				<p><code>[wolf_last_works count="6" category="my-category"]</code></p>
+				<p><?php _e( 'Additionally, you can add a count, and/or a col (number of column), and/or a category attribute.', 'wolf' ); ?></p>
+				<p><code>[wolf_last_works count="6" col="3" category="my-category"]</code></p>
 			</div>
 			<?php
 		}
@@ -721,13 +752,13 @@ if ( ! class_exists( 'Wolf_Portfolio' ) ) {
 
 			$loop = new WP_Query( $args );
 			if ( $loop->have_posts() ) : ?>
-				<ul class="shortcode-work-grid work-grid-col-<?php echo intval( $col ); ?>">
+				<div class="shortcode-works-grid works-grid-col-<?php echo intval( $col ); ?>">
 					<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
 						<?php wolf_portfolio_get_template_part( 'content', 'work' ); ?>
 
 					<?php endwhile; ?>
-				</ul><!-- .shortcode-works-grid -->
+				</div><!-- .shortcode-works-grid -->
 			<?php else : // no work ?>
 				<?php wolf_portfolio_get_template( 'loop/no-work-found.php' ); ?>
 			<?php endif;

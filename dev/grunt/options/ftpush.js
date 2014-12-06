@@ -26,6 +26,18 @@ module.exports = {
 		simple: false,
 		useList: false
 	},
+	aku: {
+		auth: {
+			host: '<%= app.remote %>',
+			port: 21,
+			authKey: 'prodKey'
+		},
+		src: '../pack/<%= app.slug %>',
+		dest: '/<%= app.akuRemotePath %>/<%= app.slug %>',
+		exclusions: ['../pack/<%= app.slug %>/dist'],
+		simple: false,
+		useList: false
+	},
 	// push to demo
 	wolf: {
 		auth: {

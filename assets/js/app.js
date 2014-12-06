@@ -1,5 +1,4 @@
-var WolfPortfolio = WolfPortfolio || {},
-	WolfPortfolioParams = WolfPortfolioParams || {};
+var WolfPortfolio = WolfPortfolio || {};
 
 /* jshint -W062 */
 WolfPortfolio = function ( $ ) {
@@ -13,81 +12,35 @@ WolfPortfolio = function ( $ ) {
 		 */
 		init : function () {
 			
-			var $this = this,
-				mainWorkContainer = $( '.works' ),
-				workOptionFilter = $( '#work-filter' ),
-				workOptionFilterLinks = workOptionFilter.find( 'a' ),
+			var mainContainer = $( '.works' ),
+				OptionFilter = $( '#work-filter' ),
+				OptionFilterLinks = OptionFilter.find( 'a' ),
 				selector;
-			
-			$( '.works' ).imagesLoaded( function() {
-				$this.setColumnWidth( '.work-item', mainWorkContainer );
-				$( '.works' ).isotope( {
+
+			mainContainer.imagesLoaded( function() {
+				mainContainer.isotope( {
 					itemSelector : '.work-item'
 				} );
 			} );
 
-			workOptionFilterLinks.click( function() {
+			OptionFilterLinks.click( function() {
 				selector = $( this ).attr( 'data-filter' );
-				workOptionFilterLinks.attr( 'href', '#' );
-				$this.setColumnWidth( '.work-item', mainWorkContainer );
-				$( '.works' ).isotope( {
+				OptionFilterLinks.attr( 'href', '#' );
+				mainContainer.isotope( {
 					filter : '.' + selector,
 					itemSelector : '.work-item',
 					layoutMode : 'fitRows',
 					animationEngine : 'best-available'
 				} );
 
-				workOptionFilterLinks.removeClass( 'active' );
+				OptionFilterLinks.removeClass( 'active' );
 				$( this ).addClass( 'active' );
 				return false;
 			} );
-
-			$( window ).smartresize( function() {
-				$this.setColumnWidth( '.work-item', mainWorkContainer );
-				$( '.works' ).isotope( 'reLayout' );
-			} );
-		},
-
-		/**
-		 * Get column count depending on container width
-		 */
-		getNumColumns : function ( mainContainer ) {
-			var winWidth = mainContainer.width(),
-				column = WolfPortfolioParams.columns;
-			if ( 500 > winWidth ) {
-				column = 1;
-			} else if ( 500 <= winWidth && 900 > winWidth ) {
-				column = 2;
-			} else if ( 900 <= winWidth ) {
-				column = WolfPortfolioParams.columns;
-			}
-			return column;
-		},
-		
-		/**
-		 * Get column width depending on column number
-		 */
-		getColumnWidth : function ( mainContainer ) {
-			var columns = this.getNumColumns( mainContainer ),
-				wrapperWidth = mainContainer.width(),
-				columnWidth = Math.floor( wrapperWidth / columns );
-			return columnWidth;
-		},
-
-		/**
-		 * Set column width
-		 */
-		setColumnWidth : function ( selector, mainContainer ) {
-			var ColumnWidth = this.getColumnWidth( mainContainer );
-			$( selector ).each( function() {
-				$( this ).css( { 'width' : ColumnWidth + 'px' } );
-			} );
 		}
-
 	};
 
 }( jQuery );
-
 
 ;( function( $ ) {
 
@@ -98,7 +51,6 @@ WolfPortfolio = function ( $ ) {
 		if ( $( '.works' ).length ) {
 			WolfPortfolio.init();
 		}
-
 	} );
 
 } )( jQuery );
